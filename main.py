@@ -9,8 +9,8 @@ gpio.setwarnings(False)
 
 IN1 = 27
 IN2 = 22
-IN3 = 23
-IN4 = 24
+IN3 = 24
+IN4 = 23
 
 gpio.setup(IN1, gpio.OUT)
 gpio.setup(IN2, gpio.OUT)

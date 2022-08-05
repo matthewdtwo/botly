@@ -6,6 +6,8 @@ class Motor:
         self.in1 = in1
         self.in2 = in2
         print(f"in1: {in1} in2: {in2}")
+        gpio.setup(self.in1, gpio.OUT)
+        gpio.setup(self.in2, gpio.OUT)
         
     def setDirection(self, direction):
         print(f"direction: {direction} in1: {self.in1}, in2: {self.in2}")

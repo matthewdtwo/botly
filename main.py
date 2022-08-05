@@ -14,3 +14,5 @@ IN4 = 24
 
 leftMotor = Motor(IN1, IN2)
 leftMotor.setDirection(Direction.FORWARD)
+time.sleep(2)
+leftMotor.setDirection(Direction.STOPPED)

@@ -24,4 +24,5 @@ def stop():
     rightMotor.setDirection(Direction.STOPPED)
 
 forward()
+time.sleep(1)
 stop()

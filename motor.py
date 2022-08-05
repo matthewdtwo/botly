@@ -16,3 +16,5 @@ class Motor:
             print("Forward")
         if(direction == Direction.BACKWARD):
             print("Backward")
+        if(direction == Direction.STOPPED):
+            print("Stopped")

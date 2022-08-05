@@ -1,5 +1,5 @@
 from motor import Motor
-from direction import Direction
+from direction import Direction as Dir
 
 import RPi.GPIO as gpio
 import time
@@ -13,6 +13,10 @@ IN3 = 23
 IN4 = 24
 
 leftMotor = Motor(IN1, IN2)
-leftMotor.setDirection(Direction.FORWARD)
+rightMotor = Motor(IN3, IN4)
+
+leftMotor.setDirection(Dir.FORWARD)
+rightMotor.setDirection(Dir.FORWARD)
 time.sleep(2)
-leftMotor.setDirection(Direction.STOPPED)
+leftMotor.setDirection(Dir.STOPPED)
+rightMotor.setDirection(Dir.STOPPED)

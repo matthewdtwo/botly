@@ -12,17 +12,12 @@ IN2 = 22
 IN3 = 23
 IN4 = 24
 
+gpio.setup(IN1, gpio.OUT)
+gpio.setup(IN2, gpio.OUT)
+gpio.setup(IN3, gpio.OUT)
+gpio.setup(IN4, gpio.OUT)
 
-leftMotor = Motor(IN1, IN2)
-rightMotor = Motor(IN3, IN4)
-
-def forward():
-    leftMotor.setDirection(Direction.FORWARD)
-    rightMotor.setDirection(Direction.FORWARD)
-def stop():
-    leftMotor.setDirection(Direction.STOPPED)
-    rightMotor.setDirection(Direction.STOPPED)
-
-forward()
-time.sleep(1)
-stop()
+gpio.output(IN1, gpio.LOW)
+gpio.output(IN2, gpio.HIGH)
+gpio.output(IN3, gpio.LOW)
+gpio.output(IN4, gpio.HIGH)

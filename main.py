@@ -18,7 +18,7 @@ rightMotor = Motor(IN3, IN4)
 
 leftMotor.setDirection(Direction.FORWARD)
 rightMotor.setDirection(Direction.FORWARD)
-time.sleep_ms()
+time.sleep(.25)
 leftMotor.setDirection(Direction.BACKWARD)
 rightMotor.setDirection(Direction.BACKWARD)
 

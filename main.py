@@ -16,5 +16,8 @@ IN4 = 24
 leftMotor = Motor(IN1, IN2)
 rightMotor = Motor(IN3, IN4)
 
-leftMotor.setDirection(Direction.FORWARD)
-rightMotor.setDirection(Direction.BACKWARD)
+def forward():
+    leftMotor.setDirection(Direction.FORWARD)
+    rightMotor.setDirection(Direction.BACKWARD)
+
+forward()

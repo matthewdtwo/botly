@@ -6,6 +6,7 @@ class Motor:
         self.in1 = in1
         self.in2 = in2
         print(f"in1: {in1} in2: {in2}")
-    def setDirection(self, Direction.FORWARD):
-        print(f"in1: {self.in1}, in2: {self.in2}")
+        
+    def setDirection(self, direction):
+        print(f"direction: {direction} in1: {self.in1}, in2: {self.in2}")
     

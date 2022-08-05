@@ -13,3 +13,4 @@ IN3 = 23
 IN4 = 24
 
 leftMotor = Motor(IN1, IN2)
+leftMotor.setDirection(Direction.FORWARD)

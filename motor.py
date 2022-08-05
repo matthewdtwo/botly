@@ -9,4 +9,8 @@ class Motor:
         
     def setDirection(self, direction):
         print(f"direction: {direction} in1: {self.in1}, in2: {self.in2}")
+        if direction == Direction.FORWARD:
+            print("forward")
+        if direction == Direction.STOPPED:
+            print("stopped")
     

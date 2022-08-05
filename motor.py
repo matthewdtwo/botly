@@ -14,5 +14,5 @@ class Motor:
     def setDirection(self, direction):
         if(direction == Direction.FORWARD):
             print("Forward")
-        if(direction == Direction.BAKCWARD):
+        if(direction == Direction.BACKWARD):
             print("Backward")

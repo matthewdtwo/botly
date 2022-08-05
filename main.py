@@ -21,3 +21,9 @@ gpio.output(IN1, gpio.LOW)
 gpio.output(IN2, gpio.HIGH)
 gpio.output(IN3, gpio.LOW)
 gpio.output(IN4, gpio.HIGH)
+
+
+gpio.output(IN1, gpio.LOW)
+gpio.output(IN2, gpio.LOW)
+gpio.output(IN3, gpio.LOW)
+gpio.output(IN4, gpio.LOW)

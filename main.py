@@ -23,6 +23,8 @@ gpio.output(IN3, gpio.LOW)
 gpio.output(IN4, gpio.HIGH)
 
 
+time.sleep(2)
+
 gpio.output(IN1, gpio.LOW)
 gpio.output(IN2, gpio.LOW)
 gpio.output(IN3, gpio.LOW)

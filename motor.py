@@ -14,7 +14,14 @@ class Motor:
     def setDirection(self, direction):
         if(direction == Direction.FORWARD):
             print("Forward")
+            gpio.setup(self.in1, gpio.HIGH)
+            gpio.setup(self.in2, gpio.LOW)
         if(direction == Direction.BACKWARD):
             print("Backward")
+            gpio.setup(self.in1, gpio.LOW)
+            gpio.setup(self.in2, gpio.HIGH)
+
         if(direction == Direction.STOPPED):
             print("Stopped")
+            gpio.setup(self.in1, gpio.LOW)
+            gpio.setup(self.in2, gpio.LOW)

@@ -18,7 +18,7 @@ rightMotor = Motor(IN3, IN4)
 
 def forward():
     leftMotor.setDirection(Direction.FORWARD)
-    rightMotor.setDirection(Direction.BACKWARD)
+    rightMotor.setDirection(Direction.FORWARD)
 def stop():
     leftMotor.setDirection(Direction.STOPPED)
     rightMotor.setDirection(Direction.STOPPED)

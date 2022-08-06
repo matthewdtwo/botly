@@ -13,6 +13,8 @@ class Motor:
 
         self.setDirection(Direction.STOPPED)
 
+        gpio.output(self.speed_pin, gpio.HIGH)
+
         # self.speed_pwm = gpio.PWM(self.speed_pin, 1000)
 
         # self.speed_pwm.ChangeDutyCycle(100)

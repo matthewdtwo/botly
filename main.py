@@ -14,11 +14,13 @@ gpio.setwarnings(False)
 
 IN1 = 22
 IN2 = 27
+M1_SPEED = 10
 IN3 = 23
 IN4 = 24
+M2_SPEED = 9
 
-leftMotor = Motor(IN1, IN2)
-rightMotor = Motor(IN3, IN4)
+leftMotor = Motor(IN1, IN2, M1_SPEED)
+rightMotor = Motor(IN3, IN4, M2_SPEED)
 
 @app.route("/forward")
 def forward():

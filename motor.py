@@ -11,9 +11,11 @@ class Motor:
         gpio.setup(self.in2, gpio.OUT)
         gpio.setup(self.speed_pin, gpio.OUT)
 
-        self.speed_pwm = gpio.PWM(self.speed_pin, 1000)
+        self.setDirection(Direction.STOPPED)
 
-        self.speed_pwm.ChangeDutyCycle(100)
+        # self.speed_pwm = gpio.PWM(self.speed_pin, 1000)
+
+        # self.speed_pwm.ChangeDutyCycle(100)
         
     def setDirection(self, direction):
         # print(f"direction: {direction} in1: {self.in1}, in2: {self.in2}")
@@ -31,4 +33,4 @@ class Motor:
             gpio.output(self.in2, gpio.LOW)
 
     def setSpeed(self, speed):
-        self.speed_pwm.ChangeDutyCycle(speed)
+        gpio.output(self.speed_pin, gpio.HIGH)

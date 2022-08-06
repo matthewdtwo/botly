@@ -3,11 +3,11 @@ from direction import Direction as Dir
 
 import RPi.GPIO as gpio
 import time
-import flask
+from flask import Flask
 import flask_cors
 
 
-app = flask(__name__)
+app = Flask(__name__)
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(False)

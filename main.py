@@ -26,23 +26,28 @@ rightMotor = Motor(IN3, IN4, M2_SPEED)
 def forward():
     leftMotor.setDirection(Dir.FORWARD)
     rightMotor.setDirection(Dir.FORWARD)
+    return "forward"
 
 @app.route("/stopped")
 def stop():
     leftMotor.setDirection(Dir.STOPPED)
     rightMotor.setDirection(Dir.STOPPED)
+    return "stopped"
 
 @app.route("/left")
 def left():
     leftMotor.setDirection(Dir.FORWARD)
     rightMotor.setDirection(Dir.BACKWARD)
+    return "left"
 
 @app.route("/right")
 def right():
     leftMotor.setDirection(Dir.BACKWARD)
     rightMotor.setDirection(Dir.FORWARD)
+    return "right"
 
 @app.route("/backward")
 def backward():
     leftMotor.setDirection(Dir.BACKWARD)
     rightMotor.setDirection(Dir.BACKWARD)
+    return "backward"

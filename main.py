@@ -26,12 +26,16 @@ rightMotor = Motor(IN3, IN4, M2_SPEED)
 def forward():
     leftMotor.setDirection(Dir.FORWARD)
     rightMotor.setDirection(Dir.FORWARD)
+    leftMotor.setSpeed(100)
+    rightMotor.setSpeed(100)
     return "forward"
 
 @app.route("/stopped")
 def stop():
     leftMotor.setDirection(Dir.STOPPED)
     rightMotor.setDirection(Dir.STOPPED)
+    leftMotor.setSpeed(0)
+    rightMotor.setSpeed(0)
     return "stopped"
 
 @app.route("/left")

@@ -7,7 +7,7 @@ import flask
 import flask_cors
 
 
-app = Flask(__name__)
+app = flask(__name__)
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(False)

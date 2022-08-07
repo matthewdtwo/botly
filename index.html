@@ -1,0 +1,56 @@
+<html>
+  <head>
+    <script type="text/javascript">
+      const states = {
+        STOPPED: "stopped",
+        FORWARD: "forward",
+        BACKWARD: "backward",
+        LEFT: "left",
+        RIGHT: "right",
+      };
+
+      let currentState = states.STOPPED; // start out stopped
+      let previousState = states.STOPPED;
+
+      function setDirection(direction) {
+        // console.log(direction);
+        console.log(direction);
+        fetch(`http://raspberrypi:5000/${direction}`)
+          .then((response) => response.json())
+          .then((data) => console.log(data));
+      }
+
+      setInterval(() => {
+        const myGamepad = navigator.getGamepads()[0]; // use the first gamepad
+        // console.log(
+        //   `Left stick at (${myGamepad.axes[0]}, ${myGamepad.axes[1]})`
+        // );
+
+        const pitch = Math.round(myGamepad.axes[1]);
+        const roll = Math.round(myGamepad.axes[0]);
+
+        if (pitch == 0 && roll == 0) {
+          currentState = states.STOPPED;
+        } else {
+          if (pitch == -1) {
+            currentState = states.FORWARD;
+          }
+          if (pitch == 1) {
+            currentState = states.BACKWARD;
+          }
+          if (roll == -1) {
+            currentState = states.LEFT;
+          }
+          if (roll == 1) {
+            currentState = states.RIGHT;
+          }
+        }
+
+        if (currentState != previousState) {
+          previousState = currentState;
+          setDirection(currentState);
+        }
+      }, 100);
+    </script>
+  </head>
+</html>

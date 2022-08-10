@@ -4,10 +4,12 @@ from direction import Direction as Dir
 import RPi.GPIO as gpio
 import time
 from flask import Flask, request
-import flask_cors
+from flask_cors import CORS
 
 
 app = Flask(__name__)
+CORS(app)
+
 
 gpio.setmode(gpio.BCM)
 gpio.setwarnings(False)

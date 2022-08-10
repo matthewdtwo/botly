@@ -1,6 +1,9 @@
 <html>
   <head>
     <script type="text/javascript">
+      const ROBOT_HOSTNAME = "raspberrypi";
+      const ROBOT_PORT = 5000;
+
       const states = {
         STOPPED: "stopped",
         FORWARD: "forward",
@@ -12,44 +15,25 @@
       let currentState = states.STOPPED; // start out stopped
       let previousState = states.STOPPED;
 
-      function setDirection(direction) {
-        // console.log(direction);
-        console.log(direction);
-        fetch(`http://raspberrypi:5000/${direction}`)
-          .then((response) => response.json())
-          .then((data) => console.log(data));
-      }
-
       setInterval(() => {
         const myGamepad = navigator.getGamepads()[0]; // use the first gamepad
         // console.log(
         //   `Left stick at (${myGamepad.axes[0]}, ${myGamepad.axes[1]})`
         // );
 
-        const pitch = Math.round(myGamepad.axes[1]);
-        const roll = Math.round(myGamepad.axes[0]);
+        // const pitch = Math.round(myGamepad.axes[1]);
+        // const roll = Math.round(myGamepad.axes[0]);
 
-        if (pitch == 0 && roll == 0) {
-          currentState = states.STOPPED;
-        } else {
-          if (pitch == -1) {
-            currentState = states.FORWARD;
-          }
-          if (pitch == 1) {
-            currentState = states.BACKWARD;
-          }
-          if (roll == -1) {
-            currentState = states.LEFT;
-          }
-          if (roll == 1) {
-            currentState = states.RIGHT;
-          }
-        }
+        const pitch = myGamepad.axes[1];
+        const roll = myGamepad.axes[0];
 
-        if (currentState != previousState) {
-          previousState = currentState;
-          setDirection(currentState);
-        }
+        fetch(`http://${ROBOT_HOSTNAME}:${ROBOT_PORT}/gamepad`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ pitch: pitch, roll: roll }),
+        });
       }, 100);
     </script>
   </head>

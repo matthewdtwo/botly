@@ -26,7 +26,7 @@ rightMotor = Motor(IN3, IN4, M2_SPEED)
 
 
 
-@app.route("/axis0", methods=["POST"])
+@app.route("/gamepad", methods=["POST"])
 def axis0():
     content_type = request.headers.get('Content-Type')
     if(content_type == 'application/json'):
@@ -34,13 +34,7 @@ def axis0():
         print(f"json: {json}")
     return "axis0"
 
-@app.route("/axis1", methods=["POST"])
-def axis1():
-    content_type = request.headers.get('Content-Type')
-    if(content_type == 'application/json'):
-        json = request.json
-        print(f"json: {json}")
-    return "axis1"
+
 @app.route("/forward")
 def forward():
     leftMotor.setDirection(Dir.FORWARD)

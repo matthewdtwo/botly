@@ -30,10 +30,12 @@ def parse_serial_data(data):
     return data_string.split()
 
 def set_left_offset(offset):
+    global left_encoder_offset
     if left_encoder_offset == 0:
         left_encoder_offset = offset
 
 def set_right_offset(offset):
+    global right_encoder_offset
     if right_encoder_offset == 0:
         right_encoder_offset = offset
 
@@ -43,7 +45,7 @@ def parse_left_or_right_encoder(data_split):
     global right_encoder_offset
     global left_encoder
     global right_encoder
-    
+
     if data_split[0] == "left:":
         set_left_offset(data_split[1])
         left_encoder = data_split[1] - left_encoder_offset

@@ -38,11 +38,11 @@ with serial.Serial() as ser:
         data_split = parse_serial_data(data)
         
         if data_split[0] == "left:":
-            left = int(data_split[1])
+            left_encoder = int(data_split[1])
         elif data_split[0] == "right:":
-            right = int(data_split[1])
+            right_encoder = int(data_split[1])
         
-        print(f"left: {left}, right: {right}")
+        print(f"left: {left_encoder}, right: {right_encoder}")
 
     
             

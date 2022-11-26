@@ -39,6 +39,11 @@ def set_right_offset(offset):
 
         
 def parse_left_or_right_encoder(data_split):
+    global left_encoder_offset
+    global right_encoder_offset
+    global left_encoder
+    global right_encoder
+    
     if data_split[0] == "left:":
         set_left_offset(data_split[1])
         left_encoder = data_split[1] - left_encoder_offset

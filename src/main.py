@@ -55,18 +55,19 @@ def parse_left_or_right_encoder(data_split):
         set_right_offset(data_split[1])
         right_encoder = int(data_split[1]) - int(right_encoder_offset)
         
-
+def set_motor_speed(motors, speed):
+    for motor in motors:
+        motor.setSpeed(speed)
+        
 def motor_test():
     left_motor.setDirection(Dir.FORWARD)
     right_motor.setDirection(Dir.FORWARD)
-    left_motor.setSpeed(100)
-    right_motor.setSpeed(100)
+    set_motor_speed([left_motor, right_motor], 100)
 
     time.sleep(2)
     left_motor.setDirection(Dir.STOPPED)
     right_motor.setDirection(Dir.STOPPED)
-    left_motor.setSpeed(0)
-    right_motor.setSpeed(0)
+    set_motor_speed([left_motor, right_motor], 0)
 
 motor_test()
 

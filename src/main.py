@@ -1,6 +1,7 @@
 from motor import Motor
 from direction import Direction as Dir
 
+import time
 import serial
 import RPi.GPIO as gpio
 
@@ -24,6 +25,7 @@ right_encoder_offset = 0
 
 left_motor = Motor(IN1, IN2, M1_SPEED)
 right_motor = Motor(IN3, IN4, M2_SPEED)
+
 
 def parse_serial_data(data):
     data_string = data[2:][:-5] # strip of b and \r\n
@@ -53,6 +55,21 @@ def parse_left_or_right_encoder(data_split):
         set_right_offset(data_split[1])
         right_encoder = int(data_split[1]) - int(right_encoder_offset)
         
+def set_forward(motors):
+    for motor in motors:
+        motor.setDirection(Dir.FORWARD)
+        
+def set_speed(motors, speed):
+    for motor in motors:
+        motor.setSpeed(speed)
+
+def motor_test():
+    set_forward([right_motor, left_motor])
+    set_speed([right_motor, left_motor], 100)
+    time.sleep(10)
+    set_speed([right_motor, left_motor], 0)
+
+motor_test()
 
 
 with serial.Serial() as ser:
@@ -66,7 +83,11 @@ with serial.Serial() as ser:
 
         parse_left_or_right_encoder(data_split)
         
-        print(f"left: {left_encoder}, right: {right_encoder}")
+
+        
+        
+    if not ser.is_open:
+        exit(1)
 
 
         

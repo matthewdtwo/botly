@@ -65,7 +65,7 @@ def set_speed(motors, speed):
 
 def motor_test():
     set_forward([right_motor, left_motor])
-    set_speed([right_motor, left_motor], 100)
+    set_speed([right_motor, left_motor], 0)
     time.sleep(10)
     set_speed([right_motor, left_motor], 0)
 

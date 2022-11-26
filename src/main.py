@@ -48,10 +48,10 @@ def parse_left_or_right_encoder(data_split):
 
     if data_split[0] == "left:":
         set_left_offset(data_split[1])
-        left_encoder = data_split[1] - left_encoder_offset
+        left_encoder = int(data_split[1]) - int(left_encoder_offset)
     elif data_split[0] == "right:":
         set_right_offset(data_split[1])
-        right_encoder = data_split[1] - right_encoder_offset
+        right_encoder = int(data_split[1]) - int(right_encoder_offset)
         
 
 

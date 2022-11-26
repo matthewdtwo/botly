@@ -6,7 +6,7 @@ class Motor:
         self.in1 = in1
         self.in2 = in2
         self.speed_pin = speed_pin
-        print(f"in1: {in1} in2: {in2}, speed_pin: {speed_pin}")
+
         gpio.setup(self.in1, gpio.OUT)
         gpio.setup(self.in2, gpio.OUT)
         gpio.setup(self.speed_pin, gpio.OUT)

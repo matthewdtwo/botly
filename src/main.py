@@ -30,7 +30,7 @@ def parse_serial_data(data):
 
 with serial.Serial() as ser:
     ser.baudrate = 115200
-    ser.prot = "/dev/ttyACM0"
+    ser.port = "/dev/ttyACM0"
     ser.open()
 
     while ser.is_open:

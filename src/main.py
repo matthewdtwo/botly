@@ -40,8 +40,9 @@ def reset_arduino():
     gpio.output(ARDUINO_RESET, gpio.HIGH)
     time.sleep(5)
 
-def cleanup():
+def cleanup(signum, frame):
     print("cleaning up")
+    exit(1)
 
 def open_serial_port():
     global ser

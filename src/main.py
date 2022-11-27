@@ -59,7 +59,6 @@ def parse_line_to_encoders(line):
         
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
-line = ''
 
 while ser.is_open:    
     try:
@@ -71,8 +70,8 @@ while ser.is_open:
             try:
                 parse_line_to_encoders(line)
                 print(f"left: {left_encoder}, right: {right_encoder}")
-            except(e):
-                print("failed to parse line. {e}")
+            except:
+                print("failed to parse line.")
 
 
     except:

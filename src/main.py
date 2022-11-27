@@ -64,22 +64,25 @@ def parse_line_to_encoders(line):
     if direction == "left:":
         if left_encoder_offset == 0:
             set_left_offset(value)
-        set_left_encoder(value)
-        
+        set_left_encoder(value)  
+
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
 motors = [left_motor, right_motor]
 
-set_motor_direction(motors, Dir.STOPPED)
-set_motor_speeds(motors, 0)
+set_motor_direction(motors, Dir.FORWARD)
+set_motor_speeds(motors, 100)
 
 start_time = int(time.time())
 current_time = 0
 
 while ser.is_open:
-    print("hello")
     current_time = int(time.time())
-    print(current_time - start_time)
+    elapse_time = current_time - start_time
+
+    if elapse_time >= 1:
+        set_motor_direction(motors, Dir.STOPPED)
+        set_motor_speeds(motors, 0)
     
 
     # try:

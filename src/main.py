@@ -92,8 +92,8 @@ def read_line():
 
 # main program variables
 
-left_encoder_target = 475
-right_encoder_target = 475
+left_encoder_target = -475
+right_encoder_target = -475
 
 set_motor_direction(motors, Dir.FORWARD)
 # main program loop   

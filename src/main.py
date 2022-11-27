@@ -89,7 +89,8 @@ while ser.is_open:
             continue
             # print(f"failed: {e}")
 
-
+    print(f"left: {left_encoder}, right: {right_encoder}")
+        
     if left_encoder >= 475 and right_encoder >= 475:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)

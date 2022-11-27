@@ -76,21 +76,22 @@ motors = [left_motor, right_motor]
 start_time = int(time.time())
 current_time = 0
 
-while ser.is_open:
-    current_time = int(time.time())
-    elapsed_time = current_time - start_time
-
-    line = ser.readline().decode('utf-8')
-
+def try_parse_line(line):
     if line != "":
         try:
             parse_line_to_encoders(line)
             print(f"left: {left_encoder}, left_encoder_offset {left_encoder_offset}, right: {right_encoder}, right_encoder_offset {right_encoder_offset}")
             print(f"line: {line}")
         except Exception as e:
-            continue
-            # print(f"failed: {e}")
-    else: # no data to parse
-        continue
+            print(f"failed: {e}")
+
+while ser.is_open:
+    current_time = int(time.time())
+    elapsed_time = current_time - start_time
+
+    line = ser.readline().decode('utf-8')
+
+    try_parse_line(line)
+    
 
 

@@ -98,7 +98,7 @@ def start_motors():
     set_motor_speeds(motors, 100)
 # main program variables
 
-# reset_arduino()
+reset_arduino()
 
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 

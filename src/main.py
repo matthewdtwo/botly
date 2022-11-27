@@ -87,7 +87,7 @@ def reset_arduino():
     gpio.output(ARDUINO_RESET, gpio.LOW)
     time.sleep(1)
     gpio.output(ARDUINO_RESET, gpio.HIGH)
-    time.sleep(1)
+    time.sleep(5)
 
 # main program variables
 
@@ -104,14 +104,3 @@ set_motor_direction(motors, Dir.FORWARD)
 # main program loop   
 while ser.is_open:
     try_parse_line(read_line())
-
-    while (left_encoder < left_encoder_target) or (right_encoder < right_encoder_target):
-        for i in range(1,100):
-            set_motor_speeds(motors, i)
-
-    if (left_encoder >= left_encoder_target) or (right_encoder >= right_encoder_target):
-        set_motor_speeds(motors, 0)
-        set_motor_direction(motors, Dir.STOPPED)
-
-
-

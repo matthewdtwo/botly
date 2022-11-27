@@ -73,11 +73,15 @@ motors = [left_motor, right_motor]
 set_motor_direction(motors, Dir.STOPPED)
 set_motor_speeds(motors, 0)
 
-start_time = time.time()
+start_time = int(time.time())
 current_time = 0
 
 while ser.is_open:
     print("hello")
+    current_time = int(time.time())
+    print(current_time)
+    
+
     # try:
     #     line = ser.readline().decode('utf-8')
         

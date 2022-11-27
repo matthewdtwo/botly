@@ -90,7 +90,7 @@ while ser.is_open:
     elapsed_time = current_time - start_time
 
     line = ser.readline().decode('utf-8')
-
+    line = str(line).strip()
     try_parse_line(line)
     
 

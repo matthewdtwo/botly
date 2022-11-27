@@ -1,6 +1,7 @@
 from motor import Motor
 from direction import Direction as Dir
 
+import signal
 import time
 import serial
 import RPi.GPIO as gpio
@@ -38,6 +39,9 @@ def reset_arduino():
     time.sleep(1)
     gpio.output(ARDUINO_RESET, gpio.HIGH)
     time.sleep(5)
+
+def cleanup():
+    print("cleaning up")
 
 def open_serial_port():
     global ser
@@ -94,6 +98,8 @@ def print_encoder_values():
         print(f"left: {left_encoder}, right: {right_encoder}")      
         start_time = int(time.time())
 
+        
+signal.signal(signal.SIGINT, cleanup)        
 
 open_serial_port()
 

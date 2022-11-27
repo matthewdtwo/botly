@@ -83,7 +83,9 @@ while ser.is_open:
     line = ser.readline().decode('utf-8')
 
     if line != "":
-        print(line)
+        parse_line_to_encoders(line)
+
+    print(f"left: {left_encoder}, right: {right_encoder}")
     
     if elapse_time >= 5:
         set_motor_direction(motors, Dir.STOPPED)

@@ -60,10 +60,12 @@ def read_line():
         
 
 def set_left_encoder_offset(value):
+    global left_encoder_offset
     if left_encoder_offset == 0:
         left_encoder_offset = value
             
 def set_right_encoder_offset(value):
+    global right_encoder_offset
     if right_encoder_offset == 0:
         right_encoder_offset = value
 

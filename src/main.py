@@ -66,7 +66,7 @@ def set_motor_speeds(motors, speed):
 
 
         
-ser = serial.Serial("/dev/ttyACM0", 115200, tiemout=1)
+ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 try:
     ser.open()
 except:

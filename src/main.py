@@ -85,13 +85,27 @@ def try_parse_line(line):
         except Exception as e:
             print(f"failed: {e}")
 
-while ser.is_open:
-    current_time = int(time.time())
-    elapsed_time = current_time - start_time
-
+def read_line():
     line = ser.readline().decode('utf-8')
     line = str(line).strip()
-    try_parse_line(line)
-    
+    return line
+
+# main program variables
+
+left_encoder_target = 475
+right_encoder_target = 475
+
+# main program loop   
+while ser.is_open:
+    try_parse_line(read_line())
+
+    while (left_encoder < left_encoder_target) or (right_encoder < right_encoder_target):
+        for i in range(1,100):
+            set_motor_speeds(motors, i)
+
+    if (left_encoder >= left_encoder_target) or (right_encoder >= right_encoder_target):
+        set_motor_speeds(motors, 0)
+        set_motor_direction(motors, Dir.STOPPED)
+
 
 

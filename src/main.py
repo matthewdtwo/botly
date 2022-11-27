@@ -83,7 +83,9 @@ while ser.is_open:
 
         print(f"left: {left_encoder}, right: {right_encoder}")
 
+
     except:
         print("failed to read line")
         exit(1)
         
+    print("hello")

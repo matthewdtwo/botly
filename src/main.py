@@ -75,6 +75,7 @@ def parse_encoder_values(line):
 
     try:
         [direction, value] = line.split()
+        value = int(value)
         if direction == "left:":
             set_left_encoder_offset(value)
             left_encoder = value - left_encoder_offset

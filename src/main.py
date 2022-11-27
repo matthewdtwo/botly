@@ -104,16 +104,12 @@ ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
 motors = [left_motor, right_motor]
 
-left_encoder_target = -475
-right_encoder_target = -475
-
 set_motor_direction(motors, Dir.STOPPED)
 # main program loop   
 start_time = int(time.time())
 while ser.is_open:
     current_time = int(time.time())
     elapsed_time = current_time - start_time
-    start_motors()
     if elapsed_time >= 5:
         stop_motors()
     else:

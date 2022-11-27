@@ -63,11 +63,12 @@ while ser.is_open:
         else:
             try:
                 parse_line_to_encoders(line)
-                print(f"left: {left_encoder}, right: {right_encoder}")
+    
             except:
                 print("failed to parse line.")
 
-
+        print(f"left: {left_encoder}, right: {right_encoder}")
+        
     except:
         print("failed to read line")
         exit(1)

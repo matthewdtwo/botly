@@ -100,5 +100,5 @@ open_serial_port()
 while ser.is_open:
     line = read_line()
     parse_encoder_values(line)
-    time.sleep(1/10)
+    
     print_encoder_values()

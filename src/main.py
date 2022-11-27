@@ -78,7 +78,7 @@ current_time = 0
 
 while ser.is_open:
     current_time = int(time.time())
-    elapse_time = current_time - start_time
+    elapsed_time = current_time - start_time
 
     line = ser.readline().decode('utf-8')
 
@@ -91,7 +91,7 @@ while ser.is_open:
 
     print(f"left: {left_encoder}, right: {right_encoder}")
         
-    if left_encoder >= 475 and right_encoder >= 475:
+    if elapsed_time >= 5:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)
     

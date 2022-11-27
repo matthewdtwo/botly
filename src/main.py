@@ -69,7 +69,7 @@ while ser.is_open:
     try:
         line = ser.readline().decode('utf-8')
         
-        if(line != ""):
+        if(line == ''):
             continue
         else:
             print(f"line: {line}")

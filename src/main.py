@@ -33,6 +33,8 @@ motors = [left_motor, right_motor]
 
 start_time = int(time.time())
 
+console_print_delay = 1
+
 def reset_arduino():
     gpio.setup(ARDUINO_RESET, gpio.OUT)
     gpio.output(ARDUINO_RESET, gpio.LOW)
@@ -100,7 +102,7 @@ def print_encoder_values():
     global start_time
     current_time = int(time.time())
     elapsed_time = int(current_time - start_time)
-    if(elapsed_time >= 5):
+    if(elapsed_time >= console_print_delay):
         print(f"left: {left_encoder}, right: {right_encoder}")      
         start_time = int(time.time())
 
@@ -110,9 +112,12 @@ def check_encoder_values():
     global right_encoder
 
     if(left_encoder >= 475):
-        print("left reached!")
+        left_motor.setDirection(Dir.STOPPED)
+        left_motor.setSpeed(0)
     if(right_encoder >= 475):
-        print("right reached!")
+        right_motor.setDirection(Dir.STOPPED)
+        right_motor.setSpeed(0)
+        
         
 signal.signal(signal.SIGINT, cleanup)        
 reset_arduino()

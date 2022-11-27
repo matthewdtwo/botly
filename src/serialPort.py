@@ -11,6 +11,7 @@ except Exception as e:
 
 try:
     line = ser.readline().decode('utf-8')
+    print(line)
 except Exception as e:
     print("failure occurred: ")
     exit(1)

@@ -42,6 +42,9 @@ def reset_arduino():
 
 def cleanup(signum, frame):
     print("cleaning up")
+    for motor in motors:
+        motor.setSpeed(0)
+        motor.setDirection(Dir.STOPPED)
     exit(1)
 
 def open_serial_port():

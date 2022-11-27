@@ -47,6 +47,8 @@ def parse_line_to_encoders(line):
     direction = split_line[0]
     value = int(split_line[1])
 
+    print(f"direction: {direction}, value: {value}")
+
     if direction == "right:":
         set_right_offset(value)
         right_encoder = right_encoder_offset - value

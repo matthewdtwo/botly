@@ -55,7 +55,10 @@ def parse_left_or_right_encoder(data_split):
         set_right_offset(data_split[1])
         right_encoder = int(data_split[1]) - int(right_encoder_offset)
         
-
+def set_motor_direction(motors, direction):
+    for motor in motors:
+        motor.setDirection(direction)
+        
 def set_motor_speeds(motors, speed):
     for motor in motors:
         motor.setSpeed(speed)
@@ -79,9 +82,11 @@ with serial.Serial() as ser:
         print(f"left: {left_encoder}, right: {right_encoder}")
 
         if left_encoder <= 475 and right_encoder <= 475:
+            set_motor_direction([left_motor, right_motor], Dir.FORWARD)
             set_motor_speeds([left_motor, right_motor], 100)
             print("forward")    
         else:
+            set_motor_direction([left_motor, right_motor], Dir.STOPPED)
             set_motor_speeds([left_motor, right_motor], 0)
             print("stopped")
 

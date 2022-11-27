@@ -46,11 +46,10 @@ def set_left_offset(offset):
 
 def set_left_encoder(value):
     global left_encoder
-    print(f"left: {value}")
     left_encoder = left_encoder_offset - value    
+
 def set_right_encoder(value):
     global right_encoder
-    print(f"right: {value}")
     right_encoder = right_encoder_offset - value    
 
 def parse_line_to_encoders(line):

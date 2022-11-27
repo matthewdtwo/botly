@@ -74,6 +74,7 @@ while ser.is_open:
         else:
             try:
                 parse_left_or_right_encoder(line)
+                print(f"left: {left}, right: {right}")
             except:
                 print("failed to parse line")
 

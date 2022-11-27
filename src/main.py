@@ -79,7 +79,7 @@ current_time = 0
 while ser.is_open:
     print("hello")
     current_time = int(time.time())
-    print(current_time)
+    print(current_time - start_time)
     
 
     # try:

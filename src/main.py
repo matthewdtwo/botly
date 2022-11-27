@@ -68,6 +68,14 @@ def parse_line_to_encoders(line):
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
+motors = [left_motor, right_motor]
+
+set_motor_direction(motors, Dir.FORWARD)
+set_motor_speeds(motors, 100)
+
+start_time = time.time()
+current_time = 0
+
 while ser.is_open:    
     try:
         line = ser.readline().decode('utf-8')
@@ -88,4 +96,7 @@ while ser.is_open:
         print("failed to read line")
         exit(1)
         
-    print("hello")
+    current_time = time.time()
+    if int(current_time - start_time) >= 10:
+        set_motor_direction(motors, Dir.STOPPED)
+        set_motor_speeds(motors, 0)

@@ -88,11 +88,10 @@ while ser.is_open:
         except Exception as e:
             continue
             # print(f"failed: {e}")
-
-    print(f"left: {left_encoder}, right: {right_encoder}")
         
     if elapsed_time >= 5:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)
-    
+    else:
+        print(f"left: {left_encoder}, right: {right_encoder}")
 

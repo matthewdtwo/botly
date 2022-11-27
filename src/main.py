@@ -80,7 +80,12 @@ while ser.is_open:
     current_time = int(time.time())
     elapse_time = current_time - start_time
 
-    if elapse_time >= 1:
+    line = ser.readline().decode('utf-8')
+
+    if line != "":
+        print(line)
+    
+    if elapse_time >= 5:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)
     

@@ -30,6 +30,8 @@ right_motor = Motor(IN3, IN4, M2_SPEED)
         
 motors = [left_motor, right_motor]
 
+start_time = int(time.time())
+
 def reset_arduino():
     gpio.setup(ARDUINO_RESET, gpio.OUT)
     gpio.output(ARDUINO_RESET, gpio.LOW)
@@ -85,15 +87,12 @@ def parse_encoder_values(line):
         print(f"failed to parse: {e}")
             
 def print_encoder_values():
-    print(f"left: {left_encoder}, right: {right_encoder}")      
-    
-        
-        
+    current_time = int(time.time())
+    elapsed_time = int(current_time - start_time)
+    if(elapsed_time >= 5):
+        print(f"left: {left_encoder}, right: {right_encoder}")      
+        start_time = int(time.time())
 
-
-    
-            
-            
 
 open_serial_port()
 

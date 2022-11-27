@@ -38,7 +38,6 @@ def reset_arduino():
     gpio.output(ARDUINO_RESET, gpio.LOW)
     time.sleep(1)
     gpio.output(ARDUINO_RESET, gpio.HIGH)
-    time.sleep(5)
 
 def cleanup(signum, frame):
     print("cleaning up")

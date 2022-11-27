@@ -83,10 +83,14 @@ while ser.is_open:
     line = ser.readline().decode('utf-8')
 
     if line != "":
-        parse_line_to_encoders(line)
+        try:
+            parse_line_to_encoders(line)
+        except Exception as e:
+            print("failed: {e}")
 
-    print(f"left: {left_encoder}, right: {right_encoder}")
-    
+
+    # print(f"left: {left_encoder}, right: {right_encoder}")
+
     if elapse_time >= 5:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)

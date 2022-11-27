@@ -76,7 +76,9 @@ with serial.Serial() as ser:
 
     while ser.is_open:
         data = str(ser.readline())
-        print(f"data: {data}")
+        
+        print(f"data: {data.decode('utf-8')}")
+
         data_split = parse_serial_data(data)
 
         parse_left_or_right_encoder(data_split)

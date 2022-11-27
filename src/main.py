@@ -34,10 +34,26 @@ def set_motor_speeds(motors, speed):
     for motor in motors:
         motor.setSpeed(speed)
 
+def set_right_offset(offset):
+    if right_encoder_offset == 0:
+        right_encoder_offset = offset
+def set_left_offset(offset):
+    if left_encoder_offset == 0:
+        left_encoder_offset = offset
 
-def parse_line(line):
+
+def parse_line_to_encoders(line):
     split_line = line.split()
-    print(f"split_line: {split_line}")
+    direction = split_line[0]
+    value = int(split_line[1])
+
+    if direction == "right:":
+        set_right_offset(value)
+        right_encoder = right_encoder_offset - value
+    if direction == "left:":
+        set_left_offset(value)
+        left_encoder = left_encoder_offset - value
+        
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 line = ''
@@ -50,7 +66,8 @@ while ser.is_open:
             continue
         else:
             try:
-                parse_line(line)
+                parse_line_to_encoders(line)
+                print(f"left: {left_encoder}, right: {right_encoder}")
             except:
                 print("failed to parse line")
 

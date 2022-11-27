@@ -85,16 +85,11 @@ while ser.is_open:
     if line != "":
         try:
             parse_line_to_encoders(line)
+            print(f"line: {line}")
         except Exception as e:
             continue
             # print(f"failed: {e}")
     else: # no data to parse
         print("continuing")
-        
-    if elapsed_time >= 5:
-        set_motor_direction(motors, Dir.STOPPED)
-        set_motor_speeds(motors, 0)
-    else:
 
-        print(f"left: {left_encoder}, right: {right_encoder}")
 

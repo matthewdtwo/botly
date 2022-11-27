@@ -81,7 +81,7 @@ with serial.Serial() as ser:
 
         print(f"left: {left_encoder}, right: {right_encoder}")
 
-        if left_encoder <= 475 and right_encoder <= 475:
+        if left_encoder >= -475 and right_encoder >= -475:
             set_motor_direction([left_motor, right_motor], Dir.FORWARD)
             set_motor_speeds([left_motor, right_motor], 100)
             print("forward")    

@@ -104,6 +104,15 @@ def print_encoder_values():
         print(f"left: {left_encoder}, right: {right_encoder}")      
         start_time = int(time.time())
 
+
+def check_encoder_values():
+    global left_encoder
+    global right_encoder
+
+    if(left_encoder >= 475):
+        print("left reached!")
+    if(right_encoder >= 475):
+        print("right reached!")
         
 signal.signal(signal.SIGINT, cleanup)        
 reset_arduino()
@@ -114,8 +123,10 @@ try:
     while ser.is_open:
         line = read_line()
         parse_encoder_values(line)
-    
         print_encoder_values()
+
+        check_encoder_values()
+
 except Exception as e:
     print(f"recieved {e}")
     exit(1)

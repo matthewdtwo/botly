@@ -11,12 +11,12 @@ except Exception as e:
 
 try:
     while ser.is_open:
-        line = ser.readline().decode('utf-8')
+        line = ser.readline().decode('utf-8').strip()
         if(line == ""):
             print("nothing recieved")
         else:
             print(f"line is: {line}")
     
 except Exception as e:
-    print("failure occurred: ")
+    print(f"failure occurred: {e}")
     exit(1)

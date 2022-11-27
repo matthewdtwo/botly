@@ -90,27 +90,8 @@ while ser.is_open:
             # print(f"failed: {e}")
 
 
-    print(f"left: {left_encoder}, right: {right_encoder}")
-
-    if elapse_time >= 5:
+    if left_encoder >= 475 and right_encoder >= 475:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)
     
 
-    # try:
-    #     line = ser.readline().decode('utf-8')
-        
-    #     if(line != ''):
-    #         try:
-    #             parse_line_to_encoders(line)
-    
-    #         except Exception as e:
-    #             print(f"failed to parse line: {e}")
-
-    #     print(f"left: {left_encoder}, right: {right_encoder}")
-
-
-    # except:
-    #     print("failed to read line")
-    #     exit(1)
-        

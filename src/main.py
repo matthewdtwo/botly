@@ -59,7 +59,14 @@ def read_line():
         print(f"read exception: {read_exception}")
         
 
+def set_left_encoder_offset(value):
+    if left_encoder_offset == 0:
+        left_encoder_offset = value
             
+def set_right_encoder_offset(value):
+    if right_encoder_offset == 0:
+        right_encoder_offset = value
+
 def parse_encoder_values(line):
     global left_encoder
     global right_encoder
@@ -67,9 +74,11 @@ def parse_encoder_values(line):
     try:
         [direction, value] = line.split()
         if direction == "left:":
-            left_encoder = value
+            set_left_encoder_offset(value)
+            left_encoder = value - left_encoder_offset
         if direction == "right:":
-            right_encoder = value
+            set_right_encoder_offset(value)
+            right_encoder = value - right_encoder_offset
     except Exception as e:
         print(f"failed to parse: {e}")
             

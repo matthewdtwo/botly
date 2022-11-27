@@ -107,7 +107,7 @@ def print_encoder_values():
         start_time = int(time.time())
 
 
-def check_encoder_values():
+def check_for_stop_condition():
     global left_encoder
     global right_encoder
 
@@ -119,18 +119,21 @@ def check_encoder_values():
         right_motor.setSpeed(0)
         
         
-signal.signal(signal.SIGINT, cleanup)        
+signal.signal(signal.SIGINT, cleanup) # hook our cleanup routine to ctrl-c so we stop the motors if we end early.
 reset_arduino()
 time.sleep(10)
 open_serial_port()
+
+for motor in motors:
+    motor.setDirection(Dir.FORWARD)
+    motor.setSpeed(100)
 
 try:
     while ser.is_open:
         line = read_line()
         parse_encoder_values(line)
         print_encoder_values()
-
-        check_encoder_values()
+        check_for_stop_condition()
 
 except Exception as e:
     print(f"recieved {e}")

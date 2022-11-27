@@ -19,14 +19,10 @@ Encoder rightMotorEncoder = Encoder(motor2pinA, motor2pinB);
 
 void interrupt0() {
   leftMotorEncoder.interruptIncrementor();
-  // Serial.print("left: ");
-  // Serial.println(leftMotorEncoder.getCounter());
 }
 
 void interrupt1() {
   rightMotorEncoder.interruptIncrementor();
-  // Serial.print("right: ");
-  // Serial.println(rightMotorEncoder.getCounter());
 }
 
 void printEncoders() {
@@ -48,8 +44,11 @@ void setup() {
 }
 
 
+String serialMessage = "";
 // main program loop
 void loop() {
   delay(10);
   printEncoders();
+
+  
 }

@@ -66,6 +66,7 @@ def set_motor_speeds(motors, speed):
 with serial.Serial() as ser:
     ser.baudrate = 115200
     ser.port = "/dev/ttyACM0"
+    ser.timeout = 1
     try:
         ser.open()
     except:
@@ -75,21 +76,12 @@ with serial.Serial() as ser:
 
     while ser.is_open:
         data = str(ser.readline())
+        print(f"data: {data}")
         data_split = parse_serial_data(data)
 
         parse_left_or_right_encoder(data_split)
 
         print(f"left: {left_encoder}, right: {right_encoder}")
-
-        if left_encoder >= -475 and right_encoder >= -475:
-            set_motor_direction([left_motor, right_motor], Dir.FORWARD)
-            set_motor_speeds([left_motor, right_motor], 100)
-            print("forward")    
-        else:
-            set_motor_direction([left_motor, right_motor], Dir.STOPPED)
-            set_motor_speeds([left_motor, right_motor], 0)
-            print("stopped")
-
         
         
     if not ser.is_open:

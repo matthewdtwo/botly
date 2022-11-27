@@ -36,7 +36,11 @@ def set_motor_speeds(motors, speed):
 
 
 def parse_line(line):
-    print(f"line: {line}")
+    split_line = line.split()
+    if split_line[0] == "left:":
+        print(f"left: {left}")
+    elif split_line[0] == "right:":
+        print(f"right: {right}")
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 line = ''

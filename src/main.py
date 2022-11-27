@@ -100,7 +100,7 @@ motors = [left_motor, right_motor]
 left_encoder_target = -475
 right_encoder_target = -475
 
-set_motor_direction(motors, Dir.FORWARD)
+set_motor_direction(motors, Dir.STOPPED)
 # main program loop   
 while ser.is_open:
     try_parse_line(read_line())

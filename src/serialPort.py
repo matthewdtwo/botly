@@ -3,22 +3,14 @@ import serial
 right = 0;
 left = 0;
 
-with serial.Serial() as ser:
-    ser.baudrate = 115200
-    ser.port = '/dev/ttyACM0'
-    ser.open()
+try:
+    ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+except Exception as e:
+    print(f"Failed to open serial port: {e}")
+    exit(1)
 
-    while ser.is_open:
-        data = str(ser.readline())
-        data_string = data[2:][:-5] # strip off the b and \r\n
-
-        data_split = data_string.split()
-
-        if data_split[0] == "left:":
-            left = int(data_split[1])
-        elif data_split[0] == "right:":
-            right = int(data_split[1])
-
-        print(f"left: {left}, right: {right}")
-
-
+try:
+    line = ser.readline().decode('utf-8')
+except Exception as e:
+    print("failure occurred: ")
+    exit(1)

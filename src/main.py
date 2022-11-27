@@ -17,6 +17,8 @@ IN3 = 23
 IN4 = 24
 M2_SPEED = 9
 
+ARDUINO_RESET = 21
+
 left_encoder = 0
 right_encoder = 0
 
@@ -66,16 +68,6 @@ def parse_line_to_encoders(line):
             set_left_offset(value)
         set_left_encoder(value)  
 
-ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
-
-motors = [left_motor, right_motor]
-
-# set_motor_direction(motors, Dir.FORWARD)
-# set_motor_speeds(motors, 100)
-
-start_time = int(time.time())
-current_time = 0
-
 def try_parse_line(line):
     if line != "":
         try:
@@ -90,7 +82,20 @@ def read_line():
     line = str(line).strip()
     return line
 
+def reset_arduino():
+    gpio.setup(ARDUINO_RESET, gpio.OUT)
+    gpio.output(ARDUINO_RESET, gpio.LOW)
+    time.sleep(1)
+    gpio.output(ARDUINO_RESET, gpio.HIGH)
+    time.sleep(1)
+
 # main program variables
+
+reset_arduino()
+
+ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+
+motors = [left_motor, right_motor]
 
 left_encoder_target = -475
 right_encoder_target = -475

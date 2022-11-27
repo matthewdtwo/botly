@@ -57,7 +57,6 @@ def read_line():
         return line
     except Exception as read_exception:
         print(f"read exception: {read_exception}")
-        
 
 def set_left_encoder_offset(value):
     global left_encoder_offset
@@ -86,7 +85,8 @@ def parse_encoder_values(line):
         print(f"failed to parse: {e}")
             
 def print_encoder_values():
-    print(f"left: {left_encoder}, right: {right_encoder}")        
+    print(f"left: {left_encoder}, right: {right_encoder}")      
+    
         
         
 
@@ -100,4 +100,5 @@ open_serial_port()
 while ser.is_open:
     line = read_line()
     parse_encoder_values(line)
+    time.sleep(1/10)
     print_encoder_values()

@@ -27,10 +27,6 @@ left_motor = Motor(IN1, IN2, M1_SPEED)
 right_motor = Motor(IN3, IN4, M2_SPEED)
 
 
-def parse_serial_data(data):
-    data_string = data[2:][:-5] # strip of b and \r\n
-    return data_string.split()
-
 def set_left_offset(offset):
     global left_encoder_offset
     if left_encoder_offset == 0:
@@ -67,12 +63,19 @@ def set_motor_speeds(motors, speed):
 
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+line = ''
 
-while ser.is_open:
-    line = ''
+while ser.is_open:    
     try:
         line = ser.readline().decode('utf-8')
-        print(f"line: {line}")
+        
+        if(line != ""):
+            continue
+        else:
+            parse_left_or_right_encoder(line)
+
+        print(f"left: {left_encoder}, right: {right_encoder}")
+
     except:
         print("failed to read line")
         exit(1)

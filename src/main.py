@@ -73,7 +73,7 @@ def try_parse_line(line):
         try:
             parse_line_to_encoders(line)
             print(f"left: {left_encoder}, left_encoder_offset {left_encoder_offset}, right: {right_encoder}, right_encoder_offset {right_encoder_offset}")
-            print(f"line: {line}")
+            # print(f"line: {line}")
         except Exception as e:
             print(f"failed: {e}")
 

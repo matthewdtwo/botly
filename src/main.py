@@ -71,7 +71,7 @@ ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 while ser.is_open:
     line = ''
     try:
-        line = ser.readline()
+        line = str(ser.readline())
         print(f"line: {line}")
     except:
         print("failed to read line")

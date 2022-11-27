@@ -73,7 +73,7 @@ while ser.is_open:
                 parse_line_to_encoders(line)
     
             except Exception as e:
-                print("failed to parse line: {e}")
+                print(f"failed to parse line: {e}")
 
         print(f"left: {left_encoder}, right: {right_encoder}")
 

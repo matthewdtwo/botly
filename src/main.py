@@ -35,10 +35,12 @@ def set_motor_speeds(motors, speed):
         motor.setSpeed(speed)
 
 def set_right_offset(offset):
+    global right_encoder_offset
     if right_encoder_offset == 0:
         right_encoder_offset = offset
         
 def set_left_offset(offset):
+    global left_encoder_offset
     if left_encoder_offset == 0:
         left_encoder_offset = offset
 

@@ -95,6 +95,7 @@ def read_line():
 left_encoder_target = 475
 right_encoder_target = 475
 
+set_motor_direction(motors, Dir.FORWARD)
 # main program loop   
 while ser.is_open:
     try_parse_line(read_line())

@@ -61,10 +61,11 @@ def parse_line_to_encoders(line):
     if direction == "right:":
         if right_encoder_offset == 0:
             set_right_offset(value)
-            set_right_encoder(value)
+        set_right_encoder(value)
     if direction == "left:":
         if left_encoder_offset == 0:
             set_left_offset(value)
+        set_left_encoder(value)
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 

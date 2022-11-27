@@ -63,34 +63,22 @@ def set_motor_speeds(motors, speed):
     for motor in motors:
         motor.setSpeed(speed)
 
-with serial.Serial() as ser:
-    ser.baudrate = 115200
-    ser.port = "/dev/ttyACM0"
-    ser.timeout = 1
+
+
+        
+ser = serial.Serial("/dev/ttyACM0", 115200, tiemout=1)
+try:
+    ser.open()
+except:
+    print("Failed to open serial port")
+    exit(1)
+
+while ser.is_open:
+    line = ''
     try:
-        ser.open()
+        line = str(ser.readline()).decode('utf-8')
+        print(f"line: {line}")
     except:
-        print("failed to open serial port")
-
-    print("Serial port is open")
-
-    while ser.is_open:
-        data = str(ser.readline())
-        
-        print(f"data: {data.decode('utf-8')}")
-
-        data_split = parse_serial_data(data)
-
-        parse_left_or_right_encoder(data_split)
-
-        print(f"left: {left_encoder}, right: {right_encoder}")
-        
-        
-    if not ser.is_open:
-        print("")
+        print("failed to read line")
         exit(1)
-
-
         
-    
-            

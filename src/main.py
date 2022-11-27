@@ -68,12 +68,10 @@ def set_motor_speeds(motors, speed):
         
 ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
-ser.open()
-
 while ser.is_open:
     line = ''
     try:
-        line = str(ser.readline()).decode('utf-8')
+        line = ser.readline()
         print(f"line: {line}")
     except:
         print("failed to read line")

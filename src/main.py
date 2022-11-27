@@ -70,8 +70,8 @@ ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
 motors = [left_motor, right_motor]
 
-set_motor_direction(motors, Dir.FORWARD)
-set_motor_speeds(motors, 100)
+# set_motor_direction(motors, Dir.FORWARD)
+# set_motor_speeds(motors, 100)
 
 start_time = int(time.time())
 current_time = 0
@@ -88,10 +88,13 @@ while ser.is_open:
         except Exception as e:
             continue
             # print(f"failed: {e}")
+    else: # no data to parse
+        print("continuing")
         
     if elapsed_time >= 5:
         set_motor_direction(motors, Dir.STOPPED)
         set_motor_speeds(motors, 0)
     else:
+
         print(f"left: {left_encoder}, right: {right_encoder}")
 

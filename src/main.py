@@ -35,10 +35,12 @@ def set_motor_speeds(motors, speed):
         motor.setSpeed(speed)
 
 def set_right_offset(offset):
-    print("right offset")
+    if left_encoder_offset == 0:
+        print("setting left encoder offset")
 
 def set_left_offset(offset):
-    print("left offset")
+    if right_encoder_offset == 0:
+        print("left offset")
 
 def parse_line_to_encoders(line):
     split_line = line.split()
@@ -68,7 +70,7 @@ while ser.is_open:
                 print("failed to parse line.")
 
         print(f"left: {left_encoder}, right: {right_encoder}")
-        
+
     except:
         print("failed to read line")
         exit(1)

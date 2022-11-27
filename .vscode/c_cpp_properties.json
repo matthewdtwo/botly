@@ -5,7 +5,8 @@
             "includePath": [
                 "${workspaceFolder}/**",
                 "/Users/matthew/.platformio/packages/framework-arduino-avr/cores/arduino",
-                "/Users/matthew/.platformio/packages/toolchain-atmelavr/avr/include"
+                "/Users/matthew/.platformio/packages/toolchain-atmelavr/avr/include",
+                "/Users/matthew/.platformio/packages/framework-arduino-avr/variants/leonardo"
             ],
             "defines": [],
             "macFrameworkPath": [

@@ -108,10 +108,5 @@ set_motor_direction(motors, Dir.STOPPED)
 # main program loop   
 start_time = int(time.time())
 while ser.is_open:
-    current_time = int(time.time())
-    elapsed_time = current_time - start_time
-    if elapsed_time >= 5:
-        stop_motors()
-    else:
-        try_parse_line(read_line())
+    try_parse_line(read_line())
     

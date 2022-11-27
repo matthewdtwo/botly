@@ -51,5 +51,5 @@ void setup() {
 // main program loop
 void loop() {
   delay(10);
-
+  printEncoders();
 }

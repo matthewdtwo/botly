@@ -10,8 +10,13 @@ except Exception as e:
     exit(1)
 
 try:
-    line = ser.readline().decode('utf-8')
-    print(line)
+    while ser.is_open:
+        line = ser.readline().decode('utf-8')
+        if(line == ""):
+            print("nothing recieved")
+        else:
+            print(f"line is: {line}")
+    
 except Exception as e:
     print("failure occurred: ")
     exit(1)

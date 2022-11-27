@@ -80,9 +80,7 @@ while ser.is_open:
     try:
         line = ser.readline().decode('utf-8')
         
-        if(line == ''):
-            continue
-        else:
+        if(line != ''):
             try:
                 parse_line_to_encoders(line)
     

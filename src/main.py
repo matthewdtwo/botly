@@ -91,6 +91,6 @@ while ser.is_open:
             continue
             # print(f"failed: {e}")
     else: # no data to parse
-        print("continuing")
+        continue
 
 

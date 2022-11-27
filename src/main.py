@@ -72,7 +72,11 @@ while ser.is_open:
         if(line == ''):
             continue
         else:
-            print(f"line: {line}")
+            try:
+                parse_left_or_right_encoder(line)
+            except:
+                print("failed to parse line")
+
 
     except:
         print("failed to read line")

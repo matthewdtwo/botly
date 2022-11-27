@@ -87,6 +87,7 @@ def parse_encoder_values(line):
         print(f"failed to parse: {e}")
             
 def print_encoder_values():
+    global start_time
     current_time = int(time.time())
     elapsed_time = int(current_time - start_time)
     if(elapsed_time >= 5):

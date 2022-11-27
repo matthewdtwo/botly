@@ -30,6 +30,26 @@ right_motor = Motor(IN3, IN4, M2_SPEED)
         
 motors = [left_motor, right_motor]
 
+def reset_arduino():
+    gpio.setup(ARDUINO_RESET, gpio.OUT)
+    gpio.output(ARDUINO_RESET, gpio.LOW)
+    time.sleep(1)
+    gpio.output(ARDUINO_RESET, gpio.HIGH)
+    time.sleep(5)
+
+def open_serial_port():
+    global ser
+    try :
+        ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+    except Exception as e:
+        print(f"Failed opening the serial port: {e}")
+        reset_arduino()
+        try:
+            ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
+        except:
+            print("failed twice. exiting")
+            exit(1)
+
 def read_line():
     try: 
         line = ser.readline().decode('utf-8')
@@ -39,24 +59,33 @@ def read_line():
         print(f"read exception: {read_exception}")
         
 
-def reset_arduino():
-    gpio.setup(ARDUINO_RESET, gpio.OUT)
-    gpio.output(ARDUINO_RESET, gpio.LOW)
-    time.sleep(1)
-    gpio.output(ARDUINO_RESET, gpio.HIGH)
-    time.sleep(5)
+            
+def parse_encoder_values(line):
+    global left_encoder
+    global right_encoder
 
-# main program variables
-
-try :
-    ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
-except Exception as e:
-    print(f"Failed opening the serial port: {e}")
-    reset_arduino()
     try:
-        ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
-    except:
-        print("failed twice. exiting")
-        exit(1)
+        [direction, value] = line.split()
+        if direction == "left:":
+            left_encoder = value
+        if direction == "right:":
+            right_encoder = value
+    except Exception as e:
+        print(f"failed to parse: {e}")
+            
+def print_encoder_values():
+    print(f"left: {left_encoder}, right: {right_encoder}")        
+        
+        
+
+
     
-    
+            
+            
+
+open_serial_port()
+
+while ser.is_open:
+    line = read_line()
+    parse_encoder_values(line)
+    print_encoder_values()

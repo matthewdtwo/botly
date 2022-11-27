@@ -106,7 +106,8 @@ def print_encoder_values():
 
         
 signal.signal(signal.SIGINT, cleanup)        
-
+reset_arduino()
+time.sleep(10)
 open_serial_port()
 
 try:

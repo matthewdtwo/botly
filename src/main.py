@@ -70,8 +70,8 @@ ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
 motors = [left_motor, right_motor]
 
-set_motor_direction(motors, Dir.FORWARD)
-set_motor_speeds(motors, 100)
+set_motor_direction(motors, Dir.STOPPED)
+set_motor_speeds(motors, 0)
 
 start_time = time.time()
 current_time = 0
@@ -96,7 +96,3 @@ while ser.is_open:
         print("failed to read line")
         exit(1)
         
-    current_time = time.time()
-    if int(current_time - start_time) >= 10:
-        set_motor_direction(motors, Dir.STOPPED)
-        set_motor_speeds(motors, 0)

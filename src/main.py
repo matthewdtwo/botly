@@ -104,9 +104,21 @@ ser = serial.Serial("/dev/ttyACM0", 115200, timeout=1)
 
 motors = [left_motor, right_motor]
 
-set_motor_direction(motors, Dir.STOPPED)
+set_motor_direction(motors, Dir.FORWARD)
+set_motor_speeds(motors, 100)
+
+
+left_encoder_target = 475
+right_encoder_target = 475
+
 # main program loop   
+
+
+
 start_time = int(time.time())
 while ser.is_open:
     try_parse_line(read_line())
     
+    if (left_encoder >= left_encoder_target) and (right_encoder >= right_encoder_target):
+        stop_motors()
+        

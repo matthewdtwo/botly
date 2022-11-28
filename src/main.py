@@ -126,7 +126,7 @@ open_serial_port()
 
 for motor in motors:
     motor.setDirection(Dir.FORWARD)
-    motor.setSpeed(100)
+    motor.setSpeed(50)
 
 try:
     while ser.is_open:

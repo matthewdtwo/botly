@@ -29,9 +29,9 @@ class Encoder {
             readEncoders();
 
             if(statusPinA == statusPinB) {
-                counter++;
-            } else {
                 counter--;
+            } else {
+                counter++;
             }
         }
 

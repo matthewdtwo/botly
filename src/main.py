@@ -126,7 +126,7 @@ def forward(distance_mm):
         motor.setSpeed(50)
 
     while abs(left_encoder) < target_enc and abs(right_encoder < target_enc):
-        continue
+        print_encoder_values
 
     for motor in motors:
         motor.setDirection(Dir.STOPPED)

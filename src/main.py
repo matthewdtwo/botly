@@ -114,9 +114,15 @@ def check_for_stop_condition():
     if(left_encoder >= 475):
         left_motor.setDirection(Dir.STOPPED)
         left_motor.setSpeed(0)
+    else:
+        left_motor.setSpeed(50)
+        left_motor.setDirection(Dir.FORWARD)
     if(right_encoder >= 475):
         right_motor.setDirection(Dir.STOPPED)
         right_motor.setSpeed(0)
+    else:
+        right_motor.setSpeed(50)
+        right_motor.setDirection(Dir.FORWARD)
         
         
 signal.signal(signal.SIGINT, cleanup) # hook our cleanup routine to ctrl-c so we stop the motors if we end early.
@@ -124,12 +130,9 @@ reset_arduino()
 time.sleep(10)
 open_serial_port()
 
-for motor in motors:
-    motor.setDirection(Dir.FORWARD)
-    motor.setSpeed(50)
-
 try:
     while ser.is_open:
+
         line = read_line()
         parse_encoder_values(line)
         print_encoder_values()

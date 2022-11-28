@@ -27,7 +27,7 @@ pi_digits = 3.14159
 
 wheel_circumference = pi_digits * wheel_diameter
 
-enc_per_mm = encoder_count_per_rev / wheel_circumference
+enc_per_mm = wheel_circumference / encoder_count_per_rev
 
 left_encoder = 0
 right_encoder = 0

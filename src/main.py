@@ -150,7 +150,7 @@ try:
         line = read_line()
         parse_encoder_values(line)
         print_encoder_values()
-        forward(100)
+        forward(200)
         
 
 except Exception as e:

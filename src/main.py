@@ -17,8 +17,17 @@ M1_SPEED = 10
 IN3 = 23
 IN4 = 24
 M2_SPEED = 9
-
 ARDUINO_RESET = 21
+
+# bot dimensions
+encoder_count_per_rev = 475
+wheel_diameter = 70 #mm
+wheel_distance = 225 # mm
+pi_digits = 3.14159
+
+wheel_circumference = pi_digits * wheel_diameter
+
+enc_per_mm = encoder_count_per_rev / wheel_circumference
 
 left_encoder = 0
 right_encoder = 0
@@ -107,22 +116,27 @@ def print_encoder_values():
         start_time = int(time.time())
 
 
-def check_for_stop_condition():
-    global left_encoder
-    global right_encoder
-
-    if(left_encoder >= 475):
+def forward(distance_mm):
+    # calculate number of encoder counts to move distance
+    enc_target = distance_mm / enc_per_mm
+    if(left_encoder < enc_target):
+        left_motor.setDirection(Dir.FORWARD)
+        left_motor.setSpeed(50)
+    else:
         left_motor.setDirection(Dir.STOPPED)
         left_motor.setSpeed(0)
-    else:
-        left_motor.setSpeed(50)
-        left_motor.setDirection(Dir.FORWARD)
-    if(right_encoder >= 475):
-        right_motor.setDirection(Dir.STOPPED)
-        right_motor.setSpeed(0)
-    else:
-        right_motor.setSpeed(50)
+    
+        
+    if(right_encoder < enc_target):
         right_motor.setDirection(Dir.FORWARD)
+        right_motor.setSpeed(50)
+    else:
+        right_motor.setDirection(Dir.STOPPED)
+        right_motor.setSpeed(0)        
+        
+
+    
+
         
         
 signal.signal(signal.SIGINT, cleanup) # hook our cleanup routine to ctrl-c so we stop the motors if we end early.
@@ -136,7 +150,8 @@ try:
         line = read_line()
         parse_encoder_values(line)
         print_encoder_values()
-        check_for_stop_condition()
+        forward(100)
+        
 
 except Exception as e:
     print(f"recieved {e}")

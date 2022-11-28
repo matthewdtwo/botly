@@ -134,7 +134,23 @@ def forward(distance_mm):
         right_motor.setDirection(Dir.STOPPED)
         right_motor.setSpeed(0)        
         
-
+def backward(distance_mm):
+    # calculate number of encoder counts to move distance
+    enc_target = distance_mm / enc_per_mm
+    if(left_encoder < enc_target):
+        left_motor.setDirection(Dir.BACKWARD)
+        left_motor.setSpeed(50)
+    else:
+        left_motor.setDirection(Dir.STOPPED)
+        left_motor.setSpeed(0)
+    
+        
+    if(right_encoder < enc_target):
+        right_motor.setDirection(Dir.BACKWARD)
+        right_motor.setSpeed(50)
+    else:
+        right_motor.setDirection(Dir.STOPPED)
+        right_motor.setSpeed(0)        
     
 
         
@@ -151,7 +167,7 @@ try:
         parse_encoder_values(line)
         print_encoder_values()
         forward(200)
-        
+        backward(200)
 
 except Exception as e:
     print(f"recieved {e}")

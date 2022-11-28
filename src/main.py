@@ -115,7 +115,7 @@ def print_encoder_values():
         print(f"left: {left_encoder}, right: {right_encoder}")      
         start_time = int(time.time())
 
-def forwad(distance_mm):
+def forward(distance_mm):
     target_enc = distance_mm / enc_per_mm
     global left_encoder
     global right_encoder

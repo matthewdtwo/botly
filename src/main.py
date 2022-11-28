@@ -115,45 +115,31 @@ def print_encoder_values():
         print(f"left: {left_encoder}, right: {right_encoder}")      
         start_time = int(time.time())
 
+def forwad(distance_mm):
+    target_enc = distance_mm / enc_per_mm
+    global left_encoder
+    global right_encoder
 
-def forward(distance_mm):
-    # calculate number of encoder counts to move distance
-    enc_target = distance_mm / enc_per_mm
-    if(left_encoder < enc_target):
-        left_motor.setDirection(Dir.FORWARD)
-        left_motor.setSpeed(50)
-    else:
-        left_motor.setDirection(Dir.STOPPED)
-        left_motor.setSpeed(0)
+    # get us moving forward
+    for motor in motors:
+        motor.setDirection(Dir.FORWARD)
+        motor.setSpeed(50)
+
+    while abs(left_encoder) < target_enc and abs(right_encoder < target_enc):
+        continue
+
+    for motor in motors:
+        motor.setDirection(Dir.STOPPED)
+        motor.setSpeed(0)
     
-        
-    if(right_encoder < enc_target):
-        right_motor.setDirection(Dir.FORWARD)
-        right_motor.setSpeed(50)
-    else:
-        right_motor.setDirection(Dir.STOPPED)
-        right_motor.setSpeed(0)        
-        
-def backward(distance_mm):
-    # calculate number of encoder counts to move distance
-    enc_target = distance_mm / enc_per_mm
-    if(abs(left_encoder) < enc_target):
-        left_motor.setDirection(Dir.BACKWARD)
-        left_motor.setSpeed(50)
-    else:
-        left_motor.setDirection(Dir.STOPPED)
-        left_motor.setSpeed(0)
-    
-        
-    if(abs(right_encoder) < enc_target):
-        right_motor.setDirection(Dir.BACKWARD)
-        right_motor.setSpeed(50)
-    else:
-        right_motor.setDirection(Dir.STOPPED)
-        right_motor.setSpeed(0)        
+            
     
 
-        
+
+    
+
+
+    
         
 signal.signal(signal.SIGINT, cleanup) # hook our cleanup routine to ctrl-c so we stop the motors if we end early.
 reset_arduino()
@@ -167,7 +153,6 @@ try:
         parse_encoder_values(line)
         print_encoder_values()
         forward(200)
-        backward(200)
 
 except Exception as e:
     print(f"recieved {e}")

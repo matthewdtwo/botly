@@ -137,7 +137,7 @@ def forward(distance_mm):
 def backward(distance_mm):
     # calculate number of encoder counts to move distance
     enc_target = distance_mm / enc_per_mm
-    if(left_encoder < enc_target):
+    if(abs(left_encoder) < enc_target):
         left_motor.setDirection(Dir.BACKWARD)
         left_motor.setSpeed(50)
     else:
@@ -145,7 +145,7 @@ def backward(distance_mm):
         left_motor.setSpeed(0)
     
         
-    if(right_encoder < enc_target):
+    if(abs(right_encoder) < enc_target):
         right_motor.setDirection(Dir.BACKWARD)
         right_motor.setSpeed(50)
     else:

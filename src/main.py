@@ -114,6 +114,8 @@ def print_encoder_values():
     if(elapsed_time >= console_print_delay):
         print(f"left: {left_encoder}, right: {right_encoder}")      
         start_time = int(time.time())
+    else:
+        print("")
 
 def forward(distance_mm):
     target_enc = distance_mm / enc_per_mm
@@ -124,10 +126,8 @@ def forward(distance_mm):
     for motor in motors:
         motor.setDirection(Dir.FORWARD)
         motor.setSpeed(50)
-
-    while abs(left_encoder) < target_enc and abs(right_encoder < target_enc):
-        print_encoder_values
-
+    
+    
     for motor in motors:
         motor.setDirection(Dir.STOPPED)
         motor.setSpeed(0)
